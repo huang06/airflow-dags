@@ -14,7 +14,7 @@ from airflow.operators.empty import EmptyOperator
 def example_taskflow_k8s():
     @task.kubernetes(
         namespace="ds",
-        image="docker.io/apache/airflow:2.5.0",
+        image="docker.io/apache/airflow:2.4.3-python3.10",
         in_cluster=True,
     )
     def helloworld():
@@ -22,7 +22,7 @@ def example_taskflow_k8s():
 
     @task.kubernetes(
         namespace="ds",
-        image="docker.io/apache/airflow:2.5.0",
+        image="docker.io/apache/airflow:2.4.3-python3.10",
         in_cluster=True,
     )
     def lib_time():
@@ -32,7 +32,7 @@ def example_taskflow_k8s():
 
     @task.kubernetes(
         namespace="ds",
-        image="docker.io/apache/airflow:2.5.0",
+        image="docker.io/apache/airflow:2.4.3-python3.10",
         in_cluster=True,
     )
     def lib_boto3():
