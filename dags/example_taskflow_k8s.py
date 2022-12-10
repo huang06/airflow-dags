@@ -30,17 +30,7 @@ def example_taskflow_k8s():
 
         print(time.time())
 
-    @task.kubernetes(
-        namespace="ds",
-        image="docker.io/apache/airflow:2.4.3-python3.10",
-        in_cluster=True,
-    )
-    def lib_boto3():
-        import boto3
-
-        print(boto3)
-
-    EmptyOperator(task_id="start") >> [helloworld(), lib_time(), lib_boto3()] >> EmptyOperator(task_id="end")
+    EmptyOperator(task_id="start") >> [helloworld(), lib_time()] >> EmptyOperator(task_id="end")
 
 
 mydag = example_taskflow_k8s()
