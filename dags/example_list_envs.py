@@ -18,7 +18,6 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
     tags=["example"],
 )
 def example_list_envs():
-
     deployment = os.environ.get("DEPLOYMENT", "DUMMY")
 
     k8s_op = partial(
