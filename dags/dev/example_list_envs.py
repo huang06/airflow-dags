@@ -10,12 +10,18 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
     KubernetesPodOperator,
 )
 
+from huang06.notifications import send_custom_notification
+
 
 @dag(
     start_date=pendulum.datetime(2022, 12, 1, tz="UTC"),
     schedule_interval=None,
     catchup=False,
     tags=["example"],
+    default_args={
+        "on_failure_callback": lambda context: send_custom_notification(context, message="Failure"),
+        "on_success_callback": lambda context: send_custom_notification(context, message="Success"),
+    },
 )
 def example_list_envs():
     deployment = os.environ.get("DEPLOYMENT", "DUMMY")
