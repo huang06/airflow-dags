@@ -28,7 +28,7 @@ def example_list_envs():
 
     k8s_op = partial(
         KubernetesPodOperator,
-        namespace="airflow",
+        namespace="ds",
         image="docker.io/library/alpine:3.17.0",
         image_pull_policy="Always",
         in_cluster=True,
